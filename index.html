@@ -1,26 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<!--
+ // WEBSITE: https://themefisher.com
+ // TWITTER: https://twitter.com/themefisher
+ // FACEBOOK: https://www.facebook.com/themefisher
+ // GITHUB: https://github.com/themefisher/
+-->
+
+<html lang="zxx">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de prueba en Github.io</title>
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X0VSVH9T4F"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-X0VSVH9T4F');
-    </script>
-
+  <meta charset="utf-8">
+  <title>Prueba Github.io</title>
+  <script>
+    function crearCookie(nombre, valor, dias) {
+      var date = new Date();
+      date.setTime(date.getTime() + (dias*24*60*60*1000));
+      document.cookie = nombre + "=" + valor + "; expires=" + date.toGMTString();
+    }
+    function validarCookie(nombre) {
+      const valor = `; ${document.cookie}`;
+      const parts = valor.split(`; ${nombre}=`);
+      if (parts.length === 2) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    function verificarCookie() {
+      var cookie_valida = validarCookie('interes-js');
+      if (cookie_valida != false) {
+        //landing page previamente visitada
+        window.location.href = "var2.html"; //redirige a la version 2 de landing
+      } else {
+        //primera visita a landing page
+        //crear cookie
+        crearCookie("interes-js", 1, 7);
+        window.location.href = "var1.html"; //redirige a la version 1 de landing
+      }
+    }
+  </script>
 </head>
-<body>
-    <h1>Bienvenido a mi página</h1>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis, alias.</p>
-    <footer>
-        <p>USFQ - 2024</p>
-    </footer>
+<body onload="verificarCookie()">
 </body>
 </html>
